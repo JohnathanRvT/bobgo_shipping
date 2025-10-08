@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 
+        This record inherits Odoo's default form for delivery methods 
+        and adds our Bobgo-specific fields.
+    -->
+    <record id="view_delivery_carrier_form_with_bobgo" model="ir.ui.view">
+        <field name="name">delivery.carrier.form.with.bobgo</field>
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+        <field name="arch" type="xml">
+            <!-- 
+                This xpath finds the 'delivery_type' field in the form and
+                inserts our new fields right after it.
+            -->
+            <xpath expr="//field[@name='delivery_type']" position="after">
+                <!--
+                    The 'attrs' attribute is a powerful Odoo feature.
+                    It makes the field invisible unless the delivery_type is 'bobgo'.
+                    It also makes the field required when the delivery_type is 'bobgo'.
+                -->
+                <field name="bobgo_api_key"
+                       attrs="{'invisible': [('delivery_type', '!=', 'bobgo')], 'required': [('delivery_type', '=', 'bobgo')]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
