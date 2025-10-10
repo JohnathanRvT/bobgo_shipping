@@ -20,10 +20,14 @@ This connector is designed to save you time and money by automating your shippin
     'support': 'info@jrvt.co.za',
     'live_test_url': 'https://odoo.jrvt.co.za/web/login',
     'depends': [
-        'delivery', # Base module for delivery carrier integration
+        'delivery',
+        'stock',
     ],
-    'data': [
-        'views/delivery_carrier_views.xml',
+    'data': [  
+        'security/ir.model.access.csv',
+        'views/product_product_view.xml',
+        'views/delivery_carrier_view.xml', 
+        'wizard/choose_bobgo_rate_view.xml',
     ],
     'installable': True,
     'application': True,

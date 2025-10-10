@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit the product form view to add dimension fields -->
+        <record id="product_product_view_form_with_dimensions" model="ir.ui.view">
+            <field name="name">product.product.form.with.dimensions</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <!-- Find the 'weight' field in the 'Inventory' tab and add our fields after it -->
+                <xpath expr="//field[@name='weight']/../.." position="after">
+                    <group string="Dimensions for Shipping">
+                        <field name="length_cm"/>
+                        <field name="width_cm"/>
+                        <field name="height_cm"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

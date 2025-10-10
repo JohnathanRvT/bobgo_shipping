@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_choose_bobgo_rate,choose.bobgo.rate.access,model_choose_bobgo_rate,base.group_user,1,0,0,0
+access_choose_bobgo_rate_line,choose.bobgo.rate.line.access,model_choose_bobgo_rate_line,base.group_user,1,0,0,0
+access_delivery_carrier_bobgo,delivery.carrier.bobgo.access,model_delivery_carrier,base.group_system,1,1,1,0
+access_product_dimensions,product.dimensions.access,model_product_product,base.group_user,1,1,0,0
+access_stock_picking_bobgo,stock.picking.bobgo.access,model_stock_picking,base.group_user,1,1,0,0

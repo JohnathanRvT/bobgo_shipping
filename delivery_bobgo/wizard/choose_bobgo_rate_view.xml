@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- List view for line items -->
+        <record id="view_choose_bobgo_rate_line_list" model="ir.ui.view">
+            <field name="name">choose.bobgo.rate.line.list</field>
+            <field name="model">choose.bobgo.rate.line</field>
+            <field name="arch" type="xml">
+                <tree create="false" delete="false" editable="bottom">
+                    <field name="service_name" readonly="1"/>
+                    <field name="description" readonly="1"/>
+                    <field name="total_price" readonly="1" widget="monetary"
+                           options="{'currency_field': 'currency_id'}"/>
+                    <field name="delivery_date_min" readonly="1"/>
+                    <field name="delivery_date_max" readonly="1"/>
+                    <field name="service_code" invisible="1"/>
+                    <field name="provider_slug" invisible="1"/>
+                    <field name="currency_id" invisible="1"/>
+                    <button name="action_view_service_details" type="object"
+                            string="Details" class="btn-info" attrs="{'invisible': [('description', '=', False)]}"/>
+                    <button name="action_apply_rate" type="object"
+                            string="Select" class="btn-primary"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Wizard form -->
+        <record id="view_choose_bobgo_rate_wizard" model="ir.ui.view">
+            <field name="name">choose.bobgo.rate.form</field>
+            <field name="model">choose.bobgo.rate</field>
+            <field name="arch" type="xml">
+                <form string="Choose a Shipping Rate">
+                    <sheet>
+                        <div class="alert alert-info" role="alert">
+                            <strong>Available Shipping Rates</strong>
+                            <p>The following rates were returned by Bobgo. Please choose one to apply to the sales order.</p>
+                        </div>
+                        <field name="line_ids" nolabel="1" 
+                               mode="tree" 
+                               widget="one2many_list"
+                               context="{'tree_view_ref': 'delivery_bobgo.view_choose_bobgo_rate_line_list'}"/>
+                    </sheet>
+                    <footer>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                        <button string="Refresh Rates" type="object" name="action_refresh_rates" class="btn-default"
+                                attrs="{'invisible': [('line_ids', '!=', [])]}"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
